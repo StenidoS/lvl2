@@ -3,15 +3,22 @@
     "description": "hexlet project lvl2",
     "type": "project",
     "license": "MIT",
+    "bin": ["bin/gendiff"],
     "autoload": {
         "psr-4": {
             "Hexlet\\Code\\": "src/"
-        }
+        },
+        "files": [
+            "src/Cli.php"
+        ]
     },
     "authors": [
         {
-            "name": "Stenido.S"
+            "name": "Stenido.S",
+            "email": "os8333324@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
 }
