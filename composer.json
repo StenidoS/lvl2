@@ -1,0 +1,17 @@
+{
+    "name": "hexlet/code",
+    "description": "hexlet project lvl2",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Stenido.S"
+        }
+    ],
+    "require": {}
+}
