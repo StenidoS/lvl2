@@ -20,5 +20,15 @@
     ],
     "require": {
         "docopt/docopt": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "scripts": {        
+        "test": [
+          "@phpcs",
+          "@phpstan",          
+          "@phpunit"
+        ]
     }
 }
