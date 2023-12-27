@@ -1,5 +1,2 @@
 /vendor/
-/.idea/
-build
-.phpunit
 .vscode
