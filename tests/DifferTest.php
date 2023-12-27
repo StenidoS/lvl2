@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Differ\Differ\genDiff;
+use function Differ\Differ\genDiff;
 use PHPUnit\Framework\TestCase;
 
 final class DifferTest extends TestCase
