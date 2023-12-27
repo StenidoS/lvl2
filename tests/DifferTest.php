@@ -23,18 +23,23 @@ final class DifferTest extends TestCase
         $this->assertSame('Hello, Ali, Foo!', $greeting);
     }
         
-    public function testNegativeTestcaseForAssertEquals() 
+    public function test() 
     {
         $expected = "geeks"; 
         $actual = "geeks";
-        $message = "actual value is not equals to expected"; 
-  
-        // Assert function to test whether expected 
-        // value is equal to actual or not 
-        $this->assertEquals( 
-            $expected, 
-            $actual, 
-            $message
-        );
-    }     
+        $message = "actual value for function test() is not equals to expected";  
+        
+        $this->assertSame($expected, $actual, $message);
+    }
+
+    public function test2() 
+    {
+        $file1 = 'tests/fixtures/file11.json';
+        $file1 = 'tests/fixtures/file22.json';
+        $expected = "Hello, Alia, Foo!"; 
+        $actual = genDiff($file1, $file2);
+        $message = "actual value for function test2() is not equals to expected";  
+        
+        $this->assertSame($expected, $actual, $message);
+    }          
 }
