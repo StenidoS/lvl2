@@ -14,4 +14,12 @@ final class DifferTest extends TestCase
 
         $this->assertSame('Hello, Alice, Boob!', $greeting);
     }
+
+    public function testDiffer2(): void
+    {
+
+        $greeting = genDiff('Ali', 'Foo');
+
+        $this->assertSame('Hello, Ali, Foo!', $greeting);
+    }
 }
