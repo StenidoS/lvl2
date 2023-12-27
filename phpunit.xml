@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="PHP_CodeSniffer">
-  <description>PHP_CodeSniffer configuration</description>
-  <rule ref="PSR12">
-    <exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
-    <exclude name="PSR12.Operators.OperatorSpacing"/>
-  </rule>
-</ruleset>
-
-<phpunit backupGlobals="false"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+         backupGlobals="false"
          backupStaticAttributes="false"
          colors="true"
          convertErrorsToExceptions="true"
@@ -26,4 +20,13 @@
     <logging>
         <log type="coverage-clover" target="./build/logs/clover.xml"/>
     </logging>
+
+    <!-- PHP_CodeSniffer configuration -->
+    <ruleset name="PHP_CodeSniffer">
+        <description>PHP_CodeSniffer configuration</description>
+        <rule ref="PSR12">
+            <exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
+            <exclude name="PSR12.Operators.OperatorSpacing"/>
+        </rule>
+    </ruleset>
 </phpunit>
