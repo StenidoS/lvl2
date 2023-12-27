@@ -35,7 +35,7 @@ final class DifferTest extends TestCase
     public function test2() 
     {
         $file1 = 'tests/fixtures/file11.json';
-        $file1 = 'tests/fixtures/file22.json';
+        $file2 = 'tests/fixtures/file22.json';
         $expected = "Hello, Alia, Foo!"; 
         $actual = genDiff($file1, $file2);
         $message = "actual value for function test2() is not equals to expected";  
