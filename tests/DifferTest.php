@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Differ\Differ\genDiffer;
+use Differ\Differ\genDiff;
 use PHPUnit\Framework\TestCase;
 
 final class DifferTest extends TestCase
@@ -10,7 +10,7 @@ final class DifferTest extends TestCase
     public function testDiffer(): void
     {
 
-        $greeting = genDiffer('Alice', 'Boob');
+        $greeting = genDiff('Alice', 'Boob');
 
         $this->assertSame('Hello, Alice, Boob!', $greeting);
     }
