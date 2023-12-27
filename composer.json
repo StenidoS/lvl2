@@ -30,6 +30,9 @@
           "@phpcs",
           "@phpstan",          
           "@phpunit"
-        ]
+        ],        
+        "phpcs": "phpcs",
+        "phpstan": "phpstan analyze",
+        "phpunit": "phpunit"
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Differ\Differ
 
-function genDiff($pathToFile1, $pathToFile2)
+function genDiffer($path1, $path2): string
 {
-
+    return 'Hello, ' . $path1 . ', ' . $path2 . '!';
 }
