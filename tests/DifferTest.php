@@ -34,12 +34,17 @@ final class DifferTest extends TestCase
 
     public function test2() 
     {
-        $file1 = 'tests/fixtures/file11.json';
-        $file2 = 'tests/fixtures/file22.json';
+        $file1 = file_get_contents($this->getPathToFile('file11.json'));
+        $file2 = file_get_contents($this->getPathToFile('file22.json'));
         $expected = "Hello, Alia, Foo!"; 
         $actual = genDiff($file1, $file2);
         $message = "actual value for function test2() is not equals to expected";  
         
         $this->assertSame($expected, $actual, $message);
-    }          
+    }
+    
+    private function getPathToFile($fileName)
+    {
+        return __DIR__ . "/fixtures/" . $fileName;
+    }
 }
