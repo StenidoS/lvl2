@@ -37,9 +37,10 @@ final class DifferTest extends TestCase
 
     public function test2() 
     {
-        $file1 = $this->getPathToFile("file11.json"); // не выводить на экран а использовать значения в файле
-        $file2 = $this->getPathToFile('file22.json');  // не выводить на экран а использовать значения в файле
-        $expected = file_get_contents($this->getPathToFile('file33.json')); // исправить ... сделать ожидаемое значение - файлом со значением. Или массивом 
+        
+        $file1 = $this->getPathToFile('file1.json'); // не выводить на экран а использовать значения в файле
+        $file2 = $this->getPathToFile('file2.json');  // не выводить на экран а использовать значения в файле
+        $expected = file_get_contents($this->getPathToFile('expected')); // исправить ... сделать ожидаемое значение - файлом со значением. Или массивом 
         $actual = genDiff($file1, $file2); // использовать значения из файлов и что то с ними сделать... например соеденить в один массив
         $message = "actual value for function test2() is not equals to expected"; // в сообщении можно определить конкретно данный тест для удобства работы с ошибками 
         

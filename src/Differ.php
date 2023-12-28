@@ -8,10 +8,15 @@ function genDiff(string $path1, string $path2): string
 {
     //return 'Hello, ' . $path1 . ', ' . $path2 . '!';
 
-    $path1 = json_decode($path1, true);
-    $path2 = json_decode($path2, true);
+    $parsedContent1 = json_decode(file_get_contents($path1), true);
+    $parsedContent2 = json_decode(file_get_contents($path2), true);
     
-    $mergedArray = array_merge($path1, $path2);
-    
-    echo json_encode($mergedArray);
+    return array_merge($parsedContent1, $parsedContent2); 
 }
+
+// реализовать новую функцию которая будет сравнивать 2 файла по сключу и по значению при чём в любом формате .
+//Диф строится на основе того, как файлы изменились относительно друг друга, 
+//ключи выводятся в алфавитном порядке. Ниже пример того, что должно получиться по результату данного шага:
+//Отсутствие плюса или минуса говорит, 
+//что ключ есть в обоих файлах, и его значения совпадают. 
+//Во всех остальных ситуациях значение по ключу либо отличается, либо ключ есть только одном файле. В примере выше ключ timeout есть в обоих файлах, но имеет разные значения, proxy находится только в file1, а verbose только в file2.

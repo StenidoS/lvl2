@@ -1,4 +1,1 @@
-{
-    "food" : "aple",
-    "food2" : "banana"
-}
+[{"name": "Mike", "age": 35}, {"name": "Sarah", "age": 28}]
