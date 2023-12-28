@@ -32,12 +32,15 @@ final class DifferTest extends TestCase
         $this->assertSame($expected, $actual, $message);
     }
 
+    // file() — Читает содержимое файла и помещает его в массив
+    // file_get_contents — Считывает весь файл в строку или предпочтительный способ чтения содержимого файла в строку.
+
     public function test2() 
     {
-        $file1 = file_get_contents($this->getPathToFile('file11.json'));
-        $file2 = file_get_contents($this->getPathToFile('file22.json'));
-        $expected = "Hello, Alia, Foo!"; 
-        $actual = genDiff($file1, $file2);
+        $file1 = file_get_contents($this->getPathToFile("file11.json")); // не выводить на экран а использовать значения в файле
+        $file2 = file_get_contents($this->getPathToFile('file22.json'));  // не выводить на экран а использовать значения в файле
+        $expected = "Hello, Alia, Foo!"; // исправить ... сделать ожидаемое значение - файлом со значением. Или массивом 
+        $actual = genDiff($file1, $file2); // использовать значения из файлов и что то с ними сделать... например соеденить в один массив
         $message = "actual value for function test2() is not equals to expected";  
         
         $this->assertSame($expected, $actual, $message);
