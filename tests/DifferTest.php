@@ -41,11 +41,12 @@ final class DifferTest extends TestCase
         $file2 = $this->getPathToFile('file22.json');  // не выводить на экран а использовать значения в файле
         $expected = file_get_contents($this->getPathToFile('file33.json')); // исправить ... сделать ожидаемое значение - файлом со значением. Или массивом 
         $actual = genDiff($file1, $file2); // использовать значения из файлов и что то с ними сделать... например соеденить в один массив
-        $message = "actual value for function test2() is not equals to expected";  
+        $message = "actual value for function test2() is not equals to expected"; // в сообщении можно определить конкретно данный тест для удобства работы с ошибками 
         
         $this->assertSame($expected, $actual, $message);
     }
     
+    //определена как приватная, чтобы ограничить ее доступность только внутри того класса или объекта, в котором она объявлена.
     private function getPathToFile($fileName)
     {
         return __DIR__ . "/fixtures/" . $fileName;
