@@ -21,8 +21,8 @@ function genDiff(string $path1, string $path2): string
     
     // Получаем список всех ключей из обоих массивов
     $keys = array_unique(array_merge(array_keys($parsedContent1), array_keys($parsedContent2)));
-    // Сортируем ключи по алфавиту
-    sort($keys);
+    // Сортируем массив по ключам в алфавитном порядке
+    sort ($keys);
     // Создаем пустой массив для хранения результата
     $result = [];
     // Проходим по всем ключам
