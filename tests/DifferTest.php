@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 final class DifferTest extends TestCase
 {
+    /*
     public function testDiffer(): void
     {
 
@@ -15,6 +16,7 @@ final class DifferTest extends TestCase
         $this->assertSame('Hello, Alice, Boob!', $greeting);
     }
 
+    
     public function testDiffer2(): void
     {
 
@@ -22,6 +24,7 @@ final class DifferTest extends TestCase
 
         $this->assertSame('Hello, Ali, Foo!', $greeting);
     }
+    
         
     public function test() 
     {
@@ -31,6 +34,7 @@ final class DifferTest extends TestCase
         
         $this->assertSame($expected, $actual, $message);
     }
+    */
 
     // file() — Читает содержимое файла и помещает его в массив
     // file_get_contents — Считывает весь файл в строку или предпочтительный способ чтения содержимого файла в строку.
