@@ -45,6 +45,20 @@ function genDiff(string $path1, string $path2): string
     return '{' . "\n" . implode("\n", $result) . "\n" . '}';
 }
 
+function stringify($value, $replacer = ' ', $spacesCount = 1) 
+{
+    $indent = str_repeat($replacer, $spacesCount); // Создаем отступ, повторяя строку replacer spacesCount раз
+    $str = ''; // Инициализируем пустую строку для нашего результата
+
+    if (is_array($value)) { // Проверяем, является ли значение массивом
+        $str .= "{\n"; // Если да, начинаем строку с открывающей фигурной скобки        
+    } else { // Если значение не является массивом
+        $str .= json_encode($value); // Просто преобразуем его в JSON-строку
+    }
+
+    return $str; // Возвращаем итоговую строку
+}
+
 // начать с 5 этапа а именно пройти там задачку от хекслета для начала...
 // добавить приведение boolean к строке 'true' / 'false'! отдельно для прохождения тестов
 // пройти 4 этап с гитхабом
