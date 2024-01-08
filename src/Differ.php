@@ -4,64 +4,70 @@ namespace Differ\Differ;
 
 //функция которая принимает два аргумента - JSON строки и складывает значения в один общий массив и выводит его на экран
 
-function genDiff(string $path1, string $path2): string
+function genDiff($path1, $path2): string
 {
     // Преобразуем файлы в ассоциативные массивы
-    $parsedContent1 = json_decode(file_get_contents($path1), true);
-    $parsedContent2 = json_decode(file_get_contents($path2), true);    
-    
+    //$parsedContent1 = json_decode(file_get_contents($path1), true);
+    //$parsedContent2 = json_decode(file_get_contents($path2), true);
+    $parsedContent1 = $path1;
+    $parsedContent2 = $path2;
+
     // Получаем список всех ключей из обоих массивов
     $keys = array_unique(array_merge(array_keys($parsedContent1), array_keys($parsedContent2)));
     // Сортируем массив по ключам в алфавитном порядке
-    sort ($keys);
+    sort($keys);
     // Создаем пустой массив для хранения результата
     $result = [];
     // Проходим по всем ключам
     foreach ($keys as $key) {
-        // Проверяем, есть ли ключ в первом массиве
-        if (array_key_exists($key, $parsedContent1)) {
-            // Проверяем, есть ли ключ во втором массиве
-            if (array_key_exists($key, $parsedContent2)) {
-                // Сравниваем значения по ключу в обоих массивах
-                if ($parsedContent1[$key] == $parsedContent2[$key]) {
-                    // Если значения равны, добавляем ключ и значение в результат со значением " "
-                    $result[] = "    {$key}: {$parsedContent1[$key]}";
-                } else {
-                    // Если значения не равны, добавляем ключ и значения из обоих массивов в результат со значением "-" и "+"
-                    $result[] = "  - {$key}: {$parsedContent1[$key]}";
-                    $result[] = "  + {$key}: {$parsedContent2[$key]}";
-                }
-            } else {
-                // Если ключа нет во втором массиве, добавляем ключ и значение из первого массива в результат со значением "-"
-                $result[] = "  - {$key}: {$parsedContent1[$key]}";
-            }
-        } else {
-            // Если ключа нет в первом массиве, добавляем ключ и значение из второго массива в результат со значением "+"
-            $result[] = "  + {$key}: {$parsedContent2[$key]}";
-        }
+        $result[] = '  ' . array_diff_by_key($key, $parsedContent1, $parsedContent2);
     }
-
-    // Возвращаем результат в виде строки, разделяя элементы переносом строки
     return '{' . "\n" . implode("\n", $result) . "\n" . '}';
 }
 
-function stringify($value, $replacer = ' ', $spacesCount = 1) 
+function array_diff_by_key(string $key, array $first, array $second): string
+{
+        $first = $first[$key];
+        $second = $second[$key];
+
+    if (is_bool($first)) {
+        $first = ($first === true) ? "true" : "false";
+    }
+    if (is_bool($second)) {
+        $second = ($second === true) ? "true" : "false";
+    }
+    if (!$first) {
+        return "+ $key: $second";
+    }
+    if (!$second) {
+        return "- $key: $first";
+    }
+    if ($first == $second) {
+        return "  $key: $first";
+    } else {
+        return  "- $key: $first\n  + $key: $second";
+    }
+}
+
+function stringify($value, $replacer = '  ', $spacesCount = 1)
 {
     $indent = str_repeat($replacer, $spacesCount); // Создаем отступ, повторяя строку replacer spacesCount раз
     $str = ''; // Инициализируем пустую строку для нашего результата
 
     if (is_array($value)) { // Проверяем, является ли значение массивом
         $str .= "{\n"; // Если да, начинаем строку с открывающей фигурной скобки
-            foreach ($value as $key => $val) { // Проходимся по каждому элементу массива
-                $str .= $indent . $key . ': '; // Добавляем ключ и двоеточие с пробелом в строку, предварительно добавив отступ
-                if (is_string($val)) { // Если значение является строкой
-                    $str .= $val; // Добавляем его в строку без изменений
-                } else { // Если значение не является строкой
-                    $str .= json_encode($val); // Преобразуем его в JSON-строку и добавляем в нашу строку
-                }
-                $str .= "\n"; // Добавляем перевод строки после каждого значения
+        foreach ($value as $key => $val) { // Проходимся по каждому элементу массива
+            $str .= $indent . $key . ': '; // Добавляем ключ и двоеточие с пробелом в строку, предварительно добавив отступ
+            if (is_array($val)) { // Если значение является массивом
+                $str .= stringify($val, $replacer, $spacesCount + 4); // Рекурсивно вызываем stringify для вложенного массива, увеличивая количество пробелов
+            } elseif (is_string($val)) { // Если значение является строкой
+                $str .= $val; // Добавляем его в строку без изменений
+            } else { // Если значение не является строкой
+                $str .= json_encode($val); // Преобразуем его в JSON-строку и добавляем в нашу строку
             }
-            $str .= '}'; // Закрываем фигурную скобку после обработки всех элементов массива        
+            $str .= "\n"; // Добавляем перевод строки после каждого значения
+        }
+            $str .= '}'; // Закрываем фигурную скобку после обработки всех элементов массива
     } else { // Если значение не является массивом
         $str .= json_encode($value); // Просто преобразуем его в JSON-строку
     }
@@ -73,7 +79,7 @@ function stringify($value, $replacer = ' ', $spacesCount = 1)
 // добавить приведение boolean к строке 'true' / 'false'! отдельно для прохождения тестов
 // пройти 4 этап с гитхабом
 // продолжить 5 этап пройти (аналогично с 3 этапом. отдельно в другом файле)
-// перейти и начать 6 этап 'Рекурсивное сравнение' 
-// связаться с Артуром по достижению любых сложностей ... желательно на 6 этапе!!! 
+// перейти и начать 6 этап 'Рекурсивное сравнение'
+// связаться с Артуром по достижению любых сложностей ... желательно на 6 этапе!!!
 //RED LINE
 //до 9 числа максимум!!!
