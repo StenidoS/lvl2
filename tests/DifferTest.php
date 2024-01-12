@@ -14,23 +14,23 @@ final class DifferTest extends TestCase
 
     // Проверка на "вложенных" данных
 
-    // public function test2()
-    // {
+    public function test2()
+    {
 
-    //     $file1 = $this->getPathToFile('file1.json'); // не выводить на экран а использовать значения в файле
-    //     $file2 = $this->getPathToFile('file2.json');  // не выводить на экран а использовать значения в файле
-    //     $expected = file_get_contents($this->getPathToFile('jsonExpected')); // исправить ... сделать ожидаемое значение - файлом со значением. Или массивом
-    //     $actual = genDiff($file1, $file2); // использовать значения из файлов и что то с ними сделать... например соеденить в один массив
-    //     $message = "actual value for function test2() is not equals to expected"; // в сообщении можно определить конкретно данный тест для удобства работы с ошибками
+        $file1 = $this->getPathToFile('file1.json'); // не выводить на экран а использовать значения в файле
+        $file2 = $this->getPathToFile('file2.json');  // не выводить на экран а использовать значения в файле
+        $expected = file_get_contents($this->getPathToFile('jsonExpected')); // исправить ... сделать ожидаемое значение - файлом со значением. Или массивом
+        $actual = genDiff($file1, $file2); // использовать значения из файлов и что то с ними сделать... например соеденить в один массив
+        $message = "actual value for function test2() is not equals to expected"; // в сообщении можно определить конкретно данный тест для удобства работы с ошибками
 
-    //     $this->assertSame($expected, $actual, $message);
-    // }
+        $this->assertSame($expected, $actual, $message);
+    }
 
     public function test3()
     {
 
-        $file1 = parseYaml('file111.yaml'); // не выводить на экран а использовать значения в файле
-        $file2 = parseYaml('file222.yaml');  // не выводить на экран а использовать значения в файле
+        $file1 = $this->getPathToFile('file111.yaml'); // не выводить на экран а использовать значения в файле
+        $file2 = $this->getPathToFile('file222.yaml');  // не выводить на экран а использовать значения в файле
         $expected = file_get_contents($this->getPathToFile('jsonExpected')); // исправить ... сделать ожидаемое значение - файлом со значением. Или массивом
         $actual = genDiff($file1, $file2); // использовать значения из файлов и что то с ними сделать... например соеденить в один массив
         $message = "actual value for function test2() is not equals to expected"; // в сообщении можно определить конкретно данный тест для удобства работы с ошибками

@@ -7,8 +7,8 @@ namespace Differ\Differ;
 function genDiff($path1, $path2): string
 {
     // Преобразуем файлы в ассоциативные массивы
-    //$parsedContent1 = json_decode(file_get_contents($path1), true);
-    //$parsedContent2 = json_decode(file_get_contents($path2), true);
+    $parsedContent1 = json_decode(file_get_contents($path1), true);
+    $parsedContent2 = json_decode(file_get_contents($path2), true);
     $parsedContent1 = $path1;
     $parsedContent2 = $path2;
 
@@ -50,14 +50,14 @@ function array_diff_by_key(string $key, array $first, array $second): string
 }
 
 
-function getFullPathToFile(string $file): string
-{
-    if (strpos($file, '/') === 0) {
-        return $file;
-    }
+// function getFullPathToFile(string $file): string
+// {
+//     if (strpos($file, '/') === 0) {
+//         return $file;
+//     }
 
-    return __DIR__ . '/../' . $file;
-}
+//     return __DIR__ . '/../' . $file;
+// }
 // начать с 5 этапа а именно пройти там задачку от хекслета для начала...
 // добавить приведение boolean к строке 'true' / 'false'! отдельно для прохождения тестов
 // пройти 4 этап с гитхабом
